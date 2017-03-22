@@ -4,9 +4,9 @@ var Layout = React.createClass({
             <div>
                 <h1>Simple SPA</h1>
                 <ul className="header">
-                    <li>Home</li>
-                    <li>Stuff</li>
-                    <li>Contect</li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/stuff">Stuff</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
                 </ul>
                 <div className="content">
                     {this.props.children}
@@ -34,6 +34,38 @@ var Home = React.createClass({
    }
 });
 
+var Stuff = React.createClass({
+    render: function(){
+        return (
+            <div>
+              <h2>STUFF</h2>
+              <p>Mauris sem velit, vehicula eget sodales vitae,
+              rhoncus eget sapien:</p>
+              <ol>
+                <li>Nulla pulvinar diam</li>
+                <li>Facilisis bibendum</li>
+                <li>Vestibulum vulputate</li>
+                <li>Eget erat</li>
+                <li>Id porttitor</li>
+              </ol>
+            </div>            
+        );
+    }
+});
+
+var Contact = React.createClass({
+    render: function(){
+        return (
+            <div>
+              <h2>GOT QUESTIONS?</h2>
+              <p>The easiest thing to do is post on
+              our <a href="http://forum.kirupa.com">forums</a>.
+              </p>
+            </div>
+        );
+    }
+});
+
 var Destination = document.querySelector("#contant");
 
 var { Router,
@@ -47,6 +79,8 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
       <IndexRoute component={Home} />
+      <Route path="stuff" component={Stuff} />
+      <Route path="contact" component={Contact} />
     </Route>
   </Router>,
   Destination
