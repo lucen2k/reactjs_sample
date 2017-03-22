@@ -9,7 +9,7 @@ var Layout = React.createClass({
                     <li>Contect</li>
                 </ul>
                 <div className="content">
-                    <Home />
+                    {this.props.children}
                 </div>
             </div>
         )
@@ -36,10 +36,18 @@ var Home = React.createClass({
 
 var Destination = document.querySelector("#contant");
 
+var { Router,
+      Route,
+      IndexRoute,
+      IndexLink,
+      hashHistory,
+      Link } = ReactRouter;
+      
 ReactDOM.render(
-  <ReactRouter.Router history={ReactRouter.hashHistory}>
-    <ReactRouter.Route path="/" component={Layout}>
-    </ReactRouter.Route>
-  </ReactRouter.Router>,
+  <Router history={hashHistory}>
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Home} />
+    </Route>
+  </Router>,
   Destination
 );
